@@ -1,86 +1,160 @@
 # 式神召喚術 ── Shikigami
 
 > 陰陽師以符咒驅使式神；開發者以 prompt 驅動 agent。
+> 書符一道，可遣萬靈。
 
-**Shikigami** 是一個 Claude Code Skill，讓你透過對話自動生成高品質的 agent prompt。無論是單一任務的獨立 agent，還是多 agent 協作的複雜工作流，只要描述你的需求，式神召喚術就能幫你產出可直接使用的 prompt。
+**Shikigami** 是一個 Claude Code Skill，讓你化身 prompt 陰陽師，透過對話召喚各路式神，自動生成高品質的 agent prompt。無論是遣一神獨行，還是布多神陣法，只需道出你的意圖，式神便應召而來。
 
-## 功能
+## 神通
 
-- 根據需求自動選擇合適的 prompt 模板
-- 支援 CLAUDE.md、inline prompt、multi-agent 陣法三種輸出格式
-- 內建 6 種式神模板與 5 種協作陣法
-- 可附加 self-check、progress reporting、thinking 觸發等增強模組
+- 依需求自動選取契約模板，無需手動挑選
+- 支援三種輸出形式：CLAUDE.md 結界、inline 咒文、multi-agent 陣法
+- 內建六體式神與五座陣法，覆蓋常見任務場景
+- 可附加護法模組：自檢術、進度回報、思維觸發
 
-## 式神類型
+## 式神一覽
 
-| 式神 | 類型 | 適用場景 |
+```
+  ╭──────────────────────────────────────────╮
+  │              六 體 式 神                  │
+  ╰──────────────────────────────────────────╯
+```
+
+| 真名 | 神格 | 司掌 |
+|------|------|------|
+| 獨行式神 | Solo | 單一使命，獨力完遂 |
+| 前鋒式神 | Scout | 斥候探路，蒐集情報 |
+| 鍛造式神 | Builder | 鑄造程式，建構系統 |
+| 審判式神 | Reviewer | 明鏡高懸，品質把關 |
+| 統帥式神 | Orchestrator | 號令群神，調度全局 |
+| 守護式神 | Guardian | 結界守衛，驅邪防患 |
+
+## 陣法大全
+
+```
+  ╭──────────────────────────────────────────╮
+  │              五 座 陣 法                  │
+  ╰──────────────────────────────────────────╯
+```
+
+| 陣名 | 陣式 | 適用之道 |
 |------|------|---------|
-| 獨行式神 | Solo Agent | 單一任務，從頭到尾獨立完成 |
-| 前鋒式神 | Scout Agent | 資訊收集、搜尋、研究 |
-| 鍛造式神 | Builder Agent | 程式碼生成、檔案建立 |
-| 審判式神 | Reviewer Agent | 審查、測試、品質把關 |
-| 統帥式神 | Orchestrator Agent | 分派任務、協調多個 sub-agent |
-| 守護式神 | Guardian Agent | 監控、安全檢查、邊界防護 |
+| 串流陣 | Pipeline | 依序傳承，如水流觴 |
+| 散射陣 | Fan-out / Fan-in | 一令散出，萬路歸一 |
+| 輪轉陣 | Iterative Refinement | 反覆鍛鍊，直至圓滿 |
+| 看門陣 | Gatekeeper | 入門驗身，出門檢魂 |
+| 專家會議陣 | Expert Panel | 眾神會議，合議定奪 |
 
-## 陣法模式
+## 請神入位
 
-| 陣法 | 模式 | 適用場景 |
-|------|------|---------|
-| 串流陣 | Pipeline | 任務有明確的先後順序 |
-| 散射陣 | Fan-out / Fan-in | 同一任務可拆分為多個獨立子任務 |
-| 輪轉陣 | Iterative Refinement | 需要反覆改進直到達到品質標準 |
-| 看門陣 | Gatekeeper | 處理前後需要安全/品質檢查 |
-| 專家會議陣 | Expert Panel | 需要從多個角度評估同一個問題 |
-
-## 安裝
-
-將 `shikigami.skill` 加入 Claude Code 的 skill 目錄：
+將神符置入 Claude Code 的 skill 目錄：
 
 ```bash
 cp shikigami.skill ~/.claude/skills/
 ```
 
-或將專案檔案放入你的工作目錄，Claude Code 即可自動偵測並載入。
+或將整座神壇（專案檔案）放入工作目錄，Claude Code 即可感應並載入。
 
-## 使用方式
+## 召喚之法
 
-在 Claude Code 對話中，用自然語言描述你的需求即可觸發：
+開壇口訣——在 Claude Code 中直接道出你的意圖：
 
-```
-幫我召喚一隻式神，專門做 code review
-```
+> **「召喚審判式神，為我審查這段程式碼。」**
 
 ```
-我需要一個 multi-agent 工作流，先爬資料、再清洗、最後匯入資料庫
+陰陽師：召喚一隻式神，專門做 code review
+式神術：遵命。正在書寫審判式神的契約……
+        ✦ 已生成 Reviewer Agent prompt
+        ✦ 審查標準：安全性、可讀性、效能
+        ✦ 輸出格式：Markdown 審查報告
 ```
 
+> **「布散射陣，先爬資料、再清洗、最後匯入資料庫。」**
+
 ```
-幫我寫一個 agent prompt，讓 Claude Code 自動把 JS 專案轉成 TypeScript
+陰陽師：我需要一個陣法，平行爬三個資料源，匯總後清洗匯入 DB
+式神術：了解。正在佈置散射陣……
+        ✦ 前鋒式神 ×3（平行爬取）
+        ✦ 鍛造式神 ×1（清洗轉換）
+        ✦ 獨行式神 ×1（匯入資料庫）
+        ✦ 統帥式神 ×1（調度全局）
 ```
 
-也可以直接使用 skill 指令：
+> **「遣一神將 JS 專案轉為 TypeScript。」**
+
+```
+陰陽師：幫我寫一個 prompt，讓 Claude Code 自動把 JS 轉 TS
+式神術：遵命。正在鍛造獨行式神的契約……
+        ✦ 已生成 Solo Agent prompt
+        ✦ 工作流程：掃描 → 轉換 → 驗證 → 報告
+```
+
+亦可直接結印：
 
 ```
 /shikigami
 ```
 
-## 專案結構
+## 術與實——對話是式神語，產出是正經 prompt
+
+式神體系的用語只在**互動對話**中出現，實際生成的 prompt 是標準的技術文件。以下是一次完整的召喚過程：
 
 ```
-├── SKILL.md           # Skill 主定義：召喚流程、寫作原則、輸出格式
-├── templates.md       # 6 種式神契約模板
-├── formations.md      # 5 種多式神協作陣法
-├── shikigami.skill    # 打包後的 skill 檔案
-└── README.md
+陰陽師：召喚一隻鍛造式神，把 /legacy 下的 Python 2 程式碼升級到 Python 3
+式神術：遵命。正在鍛造契約……
 ```
 
-## 設計原則
+生成的 prompt（正式技術輸出）：
 
-- **祈使句優先**：「讀取檔案」而非「你應該讀取檔案」
-- **具體勝於抽象**：「在 /src 下找到所有 .py 檔」而非「找到相關檔案」
-- **邊界比能力重要**：明確說「不要修改 /config」比「小心處理設定檔」有效
-- **範例是最好的說明**：附上 input/output 範例
-- **Prompt 長度控制在 300–800 tokens**：太短缺乏指引，太長式神會迷路
+```
+你是一個 Python 2 → Python 3 遷移專家。
+
+任務：將 /legacy 目錄下的所有 .py 檔案從 Python 2 語法升級到 Python 3。
+
+工作流程：
+1. 執行 find /legacy -name "*.py" -type f 取得所有 Python 檔案清單
+2. 對每個檔案，先驗證是有效的 Python 檔案
+3. 使用 2to3 工具分析需要修改的項目
+4. 逐一修改常見問題：
+   - print 語句 → print() 函式
+   - unicode/str 處理
+   - dict.keys()/values()/items() 回傳型別
+   - except Exception, e → except Exception as e
+   - relative imports
+5. 修改後驗證語法正確
+6. 如果專案有測試，執行 python3 -m pytest 確認無破壞
+
+限制：
+- 不要修改 /vendor 或 /third_party 下的檔案
+- 不要刪除任何檔案，只做 in-place 修改
+- 遇到無法自動轉換的模式，加上 # TODO: manual migration needed 註解
+
+輸出：
+- 完成後列出所有修改過的檔案清單
+- 報告任何需要手動介入的項目
+- 報告測試結果（如果有測試）
+```
+
+> 召喚用式神語，降世為正經文。對話歸對話，產出歸產出。
+
+## 神壇結構
+
+```
+神壇/
+├── SKILL.md           # 召喚術本卷：流程、口訣、禁忌
+├── templates.md       # 契約書庫：六體式神之範本
+├── formations.md      # 陣法圖錄：五座陣法之佈置
+├── shikigami.skill    # 封印神符：打包後的 skill 檔案
+└── README.md          # 入門引導
+```
+
+## 書符五戒
+
+1. **祈使為先** ──「讀取檔案」而非「你應該讀取檔案」，令出即行
+2. **具象勝虛** ──「在 /src 下找所有 .py 檔」而非「找到相關檔案」，指哪打哪
+3. **結界重於神通** ── 明言「不可動 /config」比「小心設定檔」更能約束式神
+4. **以例為咒** ── 附上 input/output 範例，式神一看即悟
+5. **契約三百至八百 tokens** ── 過短則式神茫然，過長則式神迷途
 
 ## License
 
