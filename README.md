@@ -107,6 +107,31 @@
 
 ## 請神入位
 
+### 一鍵安裝（推薦）
+
+使用安裝腳本，可擇一語言安裝：
+
+```bash
+# 繁體中文（預設）
+./install.sh
+
+# English
+./install.sh --lang en
+
+# 指定安裝路徑
+./install.sh --lang zh --dir ~/.claude/skills/shikigami
+
+# 查看說明
+./install.sh --help
+```
+
+安裝腳本會自動：
+- 建立神社目錄結構
+- 根據選擇的語言複製對應版本的文件
+- 建立向後相容的符號連結
+
+### 手動安裝
+
 將神符置入 Claude Code 的 skill 目錄：
 
 ```bash
@@ -247,7 +272,9 @@ cp shikigami.skill ~/.claude/skills/
 ├── contract/                  # 契約殿
 │   └── templates.md           #   六體式神模板（附靈力等級）
 ├── shikigami.skill            # 封印神符
-└── README.md                  # 此卷
+├── install.sh                 # 請神入位腳本（擇語安裝）
+├── README.md                  # 此卷（繁體中文）
+└── README.en.md               # This scroll (English)
 ```
 
 ## 書符五戒

@@ -107,6 +107,31 @@ Full taboo registry with role-specific taboos and absolution mechanics in `shrin
 
 ## Installation
 
+### One-Click Install (Recommended)
+
+Use the install script to choose your language:
+
+```bash
+# English
+./install.sh --lang en
+
+# 繁體中文 (default)
+./install.sh
+
+# Custom install path
+./install.sh --lang en --dir ~/.claude/skills/shikigami
+
+# Show help
+./install.sh --help
+```
+
+The install script will automatically:
+- Create the shrine directory structure
+- Copy documentation in your chosen language
+- Set up backward-compatible symlinks
+
+### Manual Installation
+
 Place the spirit talisman into Claude Code's skill directory:
 
 ```bash
@@ -247,7 +272,9 @@ Shrine/
 ├── contract/                  # Contract Hall
 │   └── templates.md / .en.md  #   Six Shikigami Templates (with power tiers)
 ├── shikigami.skill            # Sealed Talisman
-└── README.md / .en.md         # This scroll
+├── install.sh                 # Installer (language selection)
+├── README.md                  # 繁體中文
+└── README.en.md               # English (this scroll)
 ```
 
 ## Five Precepts of Talisman Writing
